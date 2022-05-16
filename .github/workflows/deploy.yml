@@ -1,0 +1,28 @@
+name: deploy
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  build:
+    name: Test deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          submodules: "recursive"
+      - name: install
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - name: build
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+      - name: deploy
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}  # Required
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} # Required
