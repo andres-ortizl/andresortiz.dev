@@ -1,3 +1,3 @@
-[submodule "starter-kit"]
-  path = "starter-kit"
-  url = https://github.com/transitive-bullshit/nextjs-notion-starter-kit
+[submodule "nextjs-notion-starter-kit"]
+	path = nextjs-notion-starter-kit
+	url = https://github.com/transitive-bullshit/nextjs-notion-starter-kit.git
