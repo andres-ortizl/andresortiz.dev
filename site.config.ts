@@ -14,7 +14,7 @@ export default siteConfig({
   author: 'Andrés Ortiz',
 
   // open graph metadata (optional)
-  description: 'Example Next.js Notion Starter Kit Site',
+  description: 'Andrés Ortiz Personal website',
 
   // social usernames (optional)
   // twitter: 'transitive_bs',
