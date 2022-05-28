@@ -15,7 +15,7 @@ import { NotionRenderer } from 'react-notion-x'
 
 // utils
 import { getBlockTitle, getPageProperty, formatDate } from 'notion-utils'
-import { mapPageUrl, getCanonicalPageUrl } from 'lib/map-page-url'
+import { mapPageUrl, getCanonicalPageUrl, shouldRedirectToAnotherSite } from 'lib/map-page-url'
 import { mapImageUrl } from 'lib/map-image-url'
 import { searchNotion } from 'lib/search-notion'
 import { useDarkMode } from 'lib/use-dark-mode'
@@ -189,6 +189,13 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
   const keys = Object.keys(recordMap?.block || {})
   const block = recordMap?.block?.[keys[0]]?.value
+
+  // Redirect if neccesary to another site
+  const shouldRedirect = shouldRedirectToAnotherSite(site, recordMap, block)(pageId)
+  if(shouldRedirect != undefined && (typeof window !== 'undefined')){ // Redirect
+    window.location.href = shouldRedirect
+    return null
+  }
 
   // const isRootPage =
   //   parsePageId(block?.id) === parsePageId(site?.rootNotionPageId)

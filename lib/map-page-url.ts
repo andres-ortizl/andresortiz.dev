@@ -1,5 +1,5 @@
-import { ExtendedRecordMap } from 'notion-types'
-import { uuidToId, parsePageId } from 'notion-utils'
+import { Block, ExtendedRecordMap } from 'notion-types'
+import { uuidToId, parsePageId, getPageProperty } from 'notion-utils'
 
 import { Site } from './types'
 import { includeNotionIdInUrls } from './config'
@@ -36,6 +36,25 @@ export const getCanonicalPageUrl =
         uuid
       })}`
     }
+  }
+
+  /**
+   * Return a url if the notion page has the property 'Redirect'm otherwise return undefined
+   * @param site 
+   * @param recordMap 
+   * @param block 
+   * @returns a url as string
+   */
+export const shouldRedirectToAnotherSite =
+  (site: Site, recordMap: ExtendedRecordMap, block: Block) =>
+  (pageId = '') => {
+    const pageUuid = parsePageId(pageId, { uuid: true })
+
+    // Search for a porperty named 'Redirect'
+    const redirect = getPageProperty<string>('Redirect', block, recordMap) || undefined
+    console.log('redirect: ',redirect)
+    return redirect
+
   }
 
 function createUrl(path: string, searchParams: URLSearchParams) {
