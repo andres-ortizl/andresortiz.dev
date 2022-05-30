@@ -40,16 +40,16 @@ export const getCanonicalPageUrl =
 
   /**
    * Return a url if the notion page has the property 'Redirect'm otherwise return undefined
-   * @param site 
-   * @param recordMap 
-   * @param block 
+   * @param site
+   * @param recordMap
+   * @param block
    * @returns a url as string
    */
 export const shouldRedirectToAnotherSite =
   (site: Site, recordMap: ExtendedRecordMap, block: Block) =>
   (pageId = '') => {
     const pageUuid = parsePageId(pageId, { uuid: true })
-
+    console.log(pageUuid)
     // Search for a porperty named 'Redirect'
     const redirect = getPageProperty<string>('Redirect', block, recordMap) || undefined
     console.log('redirect: ',redirect)
