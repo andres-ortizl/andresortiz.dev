@@ -18,6 +18,9 @@ jobs:
           cmd: install
       - name: build
         uses: borales/actions-yarn@v2.3.0
+        env:
+          REDIS_HOST: ${{ secrets.REDIS_HOST }} # Required
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }} # Required
         with:
           cmd: build
       - name: deploy
