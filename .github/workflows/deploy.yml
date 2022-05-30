@@ -26,3 +26,5 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}  # Required
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} # Required
+          REDIS_HOST: ${{ secrets.REDIS_HOST }} # Required
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }} # Required
